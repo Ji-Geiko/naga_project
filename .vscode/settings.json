@@ -1,0 +1,6 @@
+{
+    "editor.fontSize": 13,
+    "java.dependency.packagePresentation": "flat",
+    "git.ignoreLimitWarning": true,
+    "maven.view": "hierarchical"
+}
