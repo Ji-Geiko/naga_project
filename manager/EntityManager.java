@@ -57,13 +57,10 @@ public class EntityManager {
     public ArrayList<Collide> getCollides() {
         for (Entity ob : new ArrayList<>(objects)) {
             ArrayList<Collide> obCollide = ob.getCollides();
-            for(int i = 0; i == obCollide.size(); i++){
-                if(this.collides.size()!=0){
-                    this.collides.add(obCollide.get(i));
-                }
+            for(int i = 0; i >= obCollide.size(); i++){
+                this.collides.add(obCollide.get(i));
             }
         }
-
         return this.collides;
     }
 

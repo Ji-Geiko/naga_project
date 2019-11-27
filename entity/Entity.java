@@ -22,6 +22,8 @@ public abstract class Entity extends Gravity {
     protected boolean inAttack;
     protected int gravityPower;
     protected int speed;
+    protected Rectangle me = new Rectangle();
+    protected Rectangle him = new Rectangle();
 
     protected ArrayList<Collide> collides; 
 
@@ -80,6 +82,13 @@ public abstract class Entity extends Gravity {
         }
     }
 
+    public boolean isCollidedWith(Entity other) {
+        me.setBounds((int) x,(int) y,animation.getWidth(),animation.getHeight());
+        him.setBounds((int) other.x, (int) other.y, other.getAnimation().getWidth(), other.getAnimation().getHeight());
+
+        return me.intersects(him);
+    }
+
     public void draw() {
         animation.draw(x, y);
     }
@@ -104,5 +113,5 @@ public abstract class Entity extends Gravity {
         this.speed = speed;
     }
 
-
+    public abstract void collidedWith(Entity other);
 }

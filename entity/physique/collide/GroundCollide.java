@@ -10,6 +10,8 @@ public class GroundCollide extends Collide {
 
     @Override
     public void collidedWith(Collide other) {
-
+        if(other instanceof PlayerFootCollider){
+            System.out.println("player touche the ground");
+        }
     }
 }

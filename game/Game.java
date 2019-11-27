@@ -1,4 +1,5 @@
 package game;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.*;
@@ -36,8 +37,8 @@ public class Game extends Canvas {
     private long NOW;
     private long start = 0;
     private long FPS;
-    private ArrayList<Collide> playerCollides;
-    private ArrayList<Collide> otherCollides;
+    private ArrayList<Collide> collides;
+    private ArrayList<Entity> entities;
 
     public Game(boolean inGame) {
         frame = new JFrame("naga run");
@@ -124,28 +125,8 @@ public class Game extends Canvas {
             touchKey = false;
         }
 
-
         // COLLIDE CHECK
-        playerCollides = player.getCollides();
-
-        otherCollides = enManager.getCollides();
-
-        for (int p = 0; p < playerCollides.size(); p++) {
-            Collide me = (Collide) playerCollides.get(p);
-            for (int s = p; s < otherCollides.size(); s++) {
-                Collide him = (Collide) otherCollides.get(s);
-                if (me.isCollidedWith(him)) {
-                    me.collidedWith(him);
-                    him.collidedWith(me);
-                }
-            }
-        }
-        /*
-         * for (int p = 0; p < entities.size(); p++) { Entity me = (Entity)
-         * entities.get(p); for (int s = p + 1; s < entities.size(); s++) { Entity him =
-         * (Entity) entities.get(s); if (me.isCollidedWith(him)) { me.collidedWith(him);
-         * him.collidedWith(me); } } }
-         */
+        collideCheck();
     }
 
     public void logic() {
@@ -210,6 +191,30 @@ public class Game extends Canvas {
         btn.addMouseListener(new MouseInputHandler());
 
         panel.add(btn);
+    }
+
+    public void collideCheck() {
+        /*
+         * collides = enManager.getCollides();
+         * 
+         * for (int p = 0; p < collides.size(); p++) { Collide me = (Collide)
+         * collides.get(p); for (int s = p+1; s < collides.size(); s++) { Collide him =
+         * (Collide) collides.get(s); if (me.isCollidedWith(him)) {
+         * me.collidedWith(him); him.collidedWith(me); } } }
+         */
+
+        entities = enManager.getObjects();
+
+        for (int p = 0; p < entities.size(); p++) {
+            Entity me = (Entity) entities.get(p);
+            for (int s = p + 1; s < entities.size(); s++) {
+                Entity him = (Entity) entities.get(s);
+                if (me.isCollidedWith(him)) {
+                    me.collidedWith(him);
+                    him.collidedWith(me);
+                }
+            }
+        }
     }
 
     public void startGame() {

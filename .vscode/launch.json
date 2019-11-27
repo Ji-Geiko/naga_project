@@ -5,20 +5,7 @@
             "name": "CodeLens (Launch) - Game",
             "request": "launch",
             "mainClass": "game.Game",
-            "projectName": "jeu java_a26e7509"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - ObstacleManager",
-            "request": "launch",
-            "mainClass": "Game",
-            "projectName": "jeu java_a26e7509"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - Game",
-            "request": "launch",
-            "mainClass": "Game"
+            "projectName": "naga_run_5a059a3a"
         }
     ]
 }

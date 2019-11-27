@@ -68,4 +68,9 @@ public class PlayerEntity extends Entity {
     public void setLose() {
         game.gameOver(this.g);
     }
+
+    @Override
+    public void collidedWith(Entity other) {
+        this.setCollide(true);
+    }
 }

@@ -16,4 +16,9 @@ public class Ground extends Entity{
 
         this.collides.add(collide);
     }
+
+    @Override
+    public void collidedWith(Entity other) {
+        
+    }
 }
