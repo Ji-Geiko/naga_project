@@ -60,7 +60,7 @@ public class PlayerEntity extends Entity {
     }
 
     public void setJump(boolean newJump) {
-        inJump = newJump;
+        inJump = newJump; 
         this.setCollide(newJump);
     }
 
@@ -70,7 +70,14 @@ public class PlayerEntity extends Entity {
     }
 
     @Override
-    public void collidedWith(Entity other) {
+    public void collidedWith(Entity other){
+        if(this.inAttack==true){
+            if(other instanceof ObstacleEntity || other instanceof EnnemiEntity){
+                other.setDestroy(true);
+            }
+        }else if(other instanceof ObstacleEntity || other instanceof EnnemiEntity){
+            game.gameOver(g);
+        }
         this.setCollide(true);
     }
 }

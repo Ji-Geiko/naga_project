@@ -12,9 +12,6 @@ import entity.physique.collide.Collide;
 import manager.*;
 
 public class Game extends Canvas {
-    /**
-     * 
-     **/
     private static final long serialVersionUID = 1L;
     private BufferStrategy strategy;
     public JPanel panel;
@@ -135,9 +132,13 @@ public class Game extends Canvas {
         }
 
         if (click == true) {
-            player.attack(true);
+            player.setAttack(true);
             click = false;
         }
+
+        player.attack();
+
+        destroy();
 
         enManager.addEnnemi();
 
@@ -176,6 +177,16 @@ public class Game extends Canvas {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    public void destroy(){
+        entities = enManager.getObjects();
+
+        for (Entity ob : new ArrayList<>(entities)) {
+            if(ob.getDestroy()==true){
+                enManager.removeObject(ob);
+            }
+        } 
     }
 
     public void playerSetSpeed(int speed) {
@@ -240,6 +251,10 @@ public class Game extends Canvas {
         gameRunning = false;
         System.out.println("perdue");
         this.gameOver = true;
+    }
+
+    public boolean getClick(){
+        return this.click;
     }
 
     private class KeyInputHandler extends KeyAdapter {

@@ -93,4 +93,8 @@ public class EntityManager {
     public void setObjects(Entity e) {
         objects.add(e);
     }
+
+    public void removeObject(Entity e){
+        objects.remove(e);
+    }
 }
